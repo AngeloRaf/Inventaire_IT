@@ -1,0 +1,225 @@
+:root {
+  --bg: #e5f5f7;
+  --panel: #ffffff;
+  --text: #333;
+  --muted: #666;
+  --border: #ccc;
+  --primary: #007b8a;
+  --primary-hover: #00a3b0;
+  --danger: #d9534f;
+  --shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* Base */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* Header */
+.app-header {
+  background: var(--primary);
+  color: #fff;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+.app-header h1 { margin: 0; color: #fff; }
+
+/* === TOUS LES BOUTONS DU HEADER : STYLE UNIFORME (bord blanc) === */
+.actions {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.actions .btn,
+.actions .file-upload,
+.actions #btnLogout {
+  background: transparent !important;
+  color: white !important;
+  border: 2px solid white !important;
+  padding: 9px 16px !important;
+  border-radius: 10px !important;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.actions .btn:hover,
+.actions .file-upload:hover,
+.actions #btnLogout:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Bouton + Ajouter → reste blanc sur fond bleu (le plus visible) */
+.actions .btn.primary {
+  background: white !important;
+  color: var(--primary) !important;
+  font-weight: 600;
+}
+.actions .btn.primary:hover {
+  background: #f0f8ff !important;
+  transform: translateY(-2px);
+}
+
+/* Import CSV → ressemble aux autres boutons */
+.actions .file-upload {
+  margin: 0;
+  padding: 9px 16px !important;
+}
+.actions .file-upload input { display: none; }
+
+/* Footer */
+.app-footer {
+  background: var(--primary);
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  font-size: 13px;
+}
+
+/* Contenu principal */
+.app-main { padding: 16px; }
+.content {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+}
+
+/* Tableau */
+table { width: 100%; border-collapse: collapse; font-size: 14px; background: #f7f7f7; }
+thead th {
+  background: #e0e0e0;
+  border-bottom: 1px solid var(--border);
+  padding: 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+tbody td {
+  border-top: 1px solid var(--border);
+  padding: 10px;
+  vertical-align: top;
+}
+
+/* Recherche */
+.search-bar {
+  margin: 16px 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+#searchInput {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 15px;
+}
+#btnClearSearch {
+  background: #ddd;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+}
+th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+th.sortable::after { content: " ↕"; font-size: 12px; opacity: 0.4; }
+th.asc::after  { content: " ▲"; opacity: 1; }
+th.desc::after { content: " ▼"; opacity: 1; }
+
+/* Modal */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+  display: none; align-items: flex-start; justify-content: center; z-index: 1000;
+  padding-top: 30px;
+}
+.modal-overlay.visible { display: flex; }
+
+.modal {
+  background: #f9f9f9;
+  padding: 0;
+  border-radius: 12px;
+  width: min(560px, 95vw);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  position: fixed !important;
+  top: 60px;
+  left: 60px;
+  cursor: move;
+  user-select: none;
+}
+.modal-header {
+  cursor: grab;
+  background: var(--primary);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 12px 12px 0 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+.modal-header:active { cursor: grabbing; }
+
+.modal-body {
+  padding: 20px;
+}
+.modal-body label { display: block; margin-bottom: 12px; }
+.modal-body input,
+.modal-body textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #eee;
+  color: var(--text);
+}
+.modal-body textarea { resize: vertical; min-height: 64px; }
+.suggestion { display: block; font-size: 12px; color: var(--muted); margin-top: 4px; }
+.modal-footer { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; padding: 0 20px 20px; }
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 16px; right: 16px;
+  background: #333; color: #fff;
+  padding: 10px 16px; border-radius: 10px; box-shadow: var(--shadow);
+  font-size: 13px; z-index: 2000;
+}
+
+/* Login */
+.login-container {
+  max-width: 360px; margin: 80px auto; background: var(--panel);
+  padding: 30px; border-radius: 12px; box-shadow: var(--shadow); border: 1px solid var(--border);
+}
+.login-container h2 { text-align: center; margin-bottom: 20px; color: var(--primary); }
+.login-container label { display: block; margin-bottom: 14px; }
+.login-container input {
+  width: 100%; padding: 10px; border: 1px solid #999; border-radius: 6px; background: #eee;
+}
+.login-actions { text-align: center; margin-top: 20px; }
+.login-actions button {
+  background: var(--primary); color: #fff; border: 1px solid var(--primary);
+  padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 15px;
+}
+.login-actions button:hover { background: var(--primary-hover); }

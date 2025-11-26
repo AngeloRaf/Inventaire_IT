@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion Inventaire IT</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-container">
+    <h2>🔐 Connexion</h2>
+    <form id="loginForm">
+      <label>Nom d'utilisateur
+        <input type="text" id="loginUsername" required>
+        <small class="suggestion">Ex: admin, ituser</small>
+      </label>
+      <label>Mot de passe
+        <input type="password" id="loginPassword" required>
+        <small class="suggestion">Ex: 1234, it2025</small>
+      </label>
+      <div class="login-actions">
+        <button type="submit" class="btn primary">Se connecter</button>
+      </div>
+    </form>
+    <div id="loginMessage" class="toast" hidden></div>
+  </div>
+  <script src="login.js"></script>
+</body>
+</html>

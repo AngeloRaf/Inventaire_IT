@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inventaire IT</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="app-header">
+    <h1>🗂️ Inventaire IT</h1>
+    <div class="actions">
+      <button id="btnAdd" class="btn primary">+ Ajouter</button>
+      <button id="btnExport" class="btn">Exporter CSV</button>
+      <label class="file-upload">
+        Importer CSV
+        <input type="file" id="inputImport" accept=".csv"/>
+      </label>
+      <button id="btnLogout" class="btn">Déconnexion</button>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <section class="content">
+      <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Rechercher un élément (nom, modèle, catégorie, affecté, etc.)" autocomplete="off">
+      <button id="btnClearSearch" class="icon-btn" title="Effacer">X</button>
+    </div>
+      <table id="inventoryTable">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Nom</th>
+            <th>Catégorie</th>
+            <th>État</th>
+            <th>Commentaire</th>
+            <th>Emplacement</th>
+            <th>Affecté</th>
+            <th>Achat</th>
+            <th>Garantie</th>
+            <th>Qté</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h3 id="modalTitle">Ajouter un élément</h3>
+        <button class="icon-btn" id="modalClose" aria-label="Fermer">✖</button>
+      </div>
+      <form id="itemForm" class="modal-body">
+        <label>Model
+          <input type="text" id="model" autocomplete="off">
+          <small class="suggestion">Ex: Latitude 5400, ProBook</small>
+        </label>
+        <label>Nom 
+          <input type="text" id="name" required autocomplete="off">
+          <small class="suggestion">Ex: Dell, HP, Lenovo</small>
+        </label>
+        <label>Catégorie 
+          <input type="text" id="category" list="categoryList" required autocomplete="off">
+          <datalist id="categoryList">
+            <option>Ordinateur</option><option>Souris</option><option>Clavier</option>
+            <option>Écran</option><option>Imprimante</option><option>Routeur</option>
+            <option>Câble</option><option>Autre</option>
+          </datalist>
+        </label>
+        <label>État 
+          <input type="text" id="status" list="statusList" required autocomplete="off">
+          <datalist id="statusList">
+            <option>En service</option><option>En stock</option><option>En réparation</option><option>Retiré</option>
+          </datalist>
+        </label>
+        <label>Commentaire
+          <textarea id="comment" rows="2" placeholder="Notes ou remarques..."></textarea>
+        </label>
+        <label>Emplacement 
+          <input type="text" id="location" autocomplete="off">
+        </label>
+        <label>Affecté à 
+          <input type="text" id="assignedTo" autocomplete="off">
+        </label>
+        <label>Date d'achat 
+          <input type="date" id="purchaseDate">
+        </label>
+        <label>Fin de garantie 
+          <input type="date" id="warrantyEnd">
+        </label>
+        <label>Quantité 
+          <input type="number" id="quantity" min="1" value="1">
+        </label>
+        <div class="modal-footer">
+          <button type="button" id="btnCancel" class="btn">Annuler</button>
+          <button type="submit" class="btn primary">Enregistrer</button>
+        </div>
+        <input type="hidden" id="itemId"/>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+<footer class="app-footer">
+  Saim – Inventaire IT &nbsp; | &nbsp; 2025 version 1.0.0
+</footer>
